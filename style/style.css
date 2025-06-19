@@ -1,0 +1,1392 @@
+/* === FICHEIRO DE ESTILOS MESTRE - style.css === */
+
+/* --- 1. GERAL, VARIÁVEIS E BODY --- */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+:root {
+  --cor-principal: #5a00a1;
+  --cor-secundaria: #f7941d;
+  --cor-fundo-sidebar: #f4f0f7;
+  --cor-fundo-main: #ffffff;
+  --cor-fundo-suave: #f9f7fc;
+  --cor-borda-suave: #e0e0e0;
+  --cor-texto: #333;
+  --gradiente-fundo: linear-gradient(135deg, #e0c3fc 0%, #fde2e4 100%);
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  background-color: var(--cor-fundo-main);
+}
+.text-orange {
+  color: var(--cor-secundaria) !important;
+}
+.text-purple {
+  color: var(--cor-principal) !important;
+}
+.bg-purple {
+  background-color: var(--cor-principal) !important;
+}
+
+/* --- 2. BARRA DE NAVEGAÇÃO (cp_nav.php) --- */
+.custom-navbar {
+  background-color: rgba(205, 190, 223, 0.49);
+  height: 60px;
+}
+.navbar-logo {
+  height: 40px;
+}
+.search-bar {
+  flex-grow: 1;
+  margin: 0 10px;
+}
+.search-bar input {
+  border-radius: 20px;
+  padding: 5px 12px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+.nav-profile-pfp {
+  width: 36px;
+  height: 36px;
+  object-fit: cover;
+}
+.profile-icon {
+  font-size: 1.8rem;
+  color: var(--cor-principal);
+}
+#notification-dropdown-list {
+  padding: 8px 0;
+  border: 1px solid var(--cor-borda-suave);
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+#notification-dropdown-list .dropdown-item {
+  padding: 12px 20px;
+  border-bottom: 1px solid #f5f5f5;
+  white-space: normal;
+  transition: background-color 0.2s ease;
+}
+#notification-dropdown-list .dropdown-item:last-child {
+  border-bottom: none;
+}
+#notification-dropdown-list .dropdown-item:hover {
+  background-color: var(--cor-fundo-suave);
+}
+.notification-content .message {
+  font-weight: 500;
+  color: var(--cor-texto);
+}
+.notification-content .timestamp {
+  font-size: 0.78rem;
+  color: #888;
+}
+.notification-footer a {
+  font-weight: 600;
+  color: var(--cor-principal) !important;
+}
+.notification-footer a:hover {
+  background-color: #ede7f6;
+}
+
+/* --- 3. LAYOUTS DE PÁGINA (Perfil, Mensagens, etc.) --- */
+.page-wrapper {
+  display: flex;
+}
+.sidebar {
+  width: 280px;
+  background: var(--cor-fundo-sidebar);
+  padding: 30px;
+  min-height: calc(100vh - 60px);
+  border-right: 1px solid var(--cor-borda-suave);
+}
+.sidebar img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+}
+.sidebar h5 {
+  margin-top: 10px;
+  font-weight: 600;
+}
+.sidebar a {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px 15px;
+  margin: 8px 0;
+  color: #555;
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+.sidebar a:hover {
+  background-color: #e8e2ee;
+  color: var(--cor-principal);
+}
+.sidebar a.active {
+  background-color: var(--cor-principal);
+  color: white;
+}
+.sidebar a i {
+  width: 20px;
+  text-align: center;
+}
+.content-area {
+  flex: 1;
+  padding: 40px;
+  height: calc(100vh - 60px);
+  overflow-y: auto;
+  background-color: #fff;
+}
+.content-area-suave {
+  background-color: var(--cor-fundo-suave);
+}
+
+/* --- 4. PÁGINA DE REGISTO E LOGIN --- */
+.auth-page-body {
+  background: var(--gradiente-fundo);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+.register-container,
+.login-wrapper {
+  display: flex;
+  width: 100%;
+  max-width: 950px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  overflow: hidden;
+}
+.login-wrapper {
+  max-width: 700px;
+}
+.form-panel,
+.login-wrapper .right-panel {
+  width: 50%;
+  padding: 30px 40px;
+  background: linear-gradient(to bottom, #ede7f6, #fff0e9);
+}
+.illustration-panel,
+.login-wrapper .left-panel {
+  width: 50%;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.illustration-panel img,
+.login-wrapper .left-panel img {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+}
+.form-panel h2,
+.login-wrapper .right-panel h2 {
+  text-align: center;
+  font-weight: 700;
+  color: #4a00e0;
+  margin-bottom: 1rem;
+}
+.tab-group {
+  display: flex;
+  background-color: #f0f0f0;
+  border-radius: 25px;
+  padding: 5px;
+  margin-bottom: 20px;
+}
+.tab-btn {
+  flex: 1;
+  padding: 8px;
+  border-radius: 20px;
+  border: none;
+  background-color: transparent;
+  color: var(--cor-principal);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.tab-btn.active {
+  background-color: var(--cor-principal);
+  color: white;
+  box-shadow: 0 4px 10px rgba(90, 0, 161, 0.3);
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+.form-label {
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 0.2rem;
+  font-size: 0.85rem;
+}
+.form-control,
+.form-select,
+textarea.form-control {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  box-shadow: none;
+  margin-bottom: 0;
+}
+.choice-group .btn {
+  border: 1px solid #ddd;
+  background-color: #fff;
+  color: #333;
+  margin: 0 4px 4px 0;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  padding: 5px 12px;
+}
+.choice-group input:checked + .btn {
+  background-color: var(--cor-secundaria);
+  color: white;
+  border-color: var(--cor-secundaria);
+  font-weight: bold;
+}
+.btn-submit,
+.btn-login {
+  background: var(--cor-principal);
+  color: white;
+  font-weight: bold;
+  border-radius: 10px;
+  padding: 10px;
+  width: 100%;
+  margin-top: 15px;
+  transition: all 0.3s ease;
+  border: none;
+}
+.btn-submit:hover,
+.btn-login:hover {
+  background: #4a00e0;
+  box-shadow: 0 5px 15px rgba(90, 0, 161, 0.4);
+}
+
+/* --- 5. PÁGINA DE AGENDA (agenda.php) --- */
+.agenda-wrapper {
+  flex: 1;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 60px);
+}
+.agenda-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.agenda-nav button,
+.btn-view-mode,
+#today-btn {
+  background: #fff;
+  border: 1px solid var(--cor-borda-suave);
+  border-radius: 10px;
+  padding: 10px 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.agenda-nav button:hover,
+.btn-view-mode:hover,
+#today-btn:hover {
+  background-color: #f7f3ff;
+  border-color: var(--cor-principal);
+  color: var(--cor-principal);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+.agenda-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--cor-texto);
+}
+.view-switcher .btn-view-mode.active {
+  background-color: var(--cor-principal);
+  color: white;
+  border-color: var(--cor-principal);
+}
+.calendar-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+.calendar-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  padding: 0 10px;
+}
+.calendar-header > div {
+  text-align: right;
+  padding-right: 15px;
+  font-weight: 600;
+  color: #999;
+  font-size: 0.9rem;
+}
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-auto-rows: minmax(120px, auto);
+  gap: 8px;
+  flex-grow: 1;
+  background-color: var(--cor-fundo-suave);
+  padding: 8px;
+  border-radius: 16px;
+}
+.day-cell {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  transition: all 0.2s ease-in-out;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid transparent;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+.day-cell.other-month {
+  opacity: 0.5;
+  background-color: transparent;
+  box-shadow: none;
+}
+.day-cell:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.day-number {
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-align: right;
+}
+.day-cell.today {
+  border: 2px solid var(--cor-secundaria);
+}
+.day-cell.selected {
+  border-color: var(--cor-principal);
+  background-color: #f7f3ff;
+}
+.events-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 5px;
+}
+.event-pill {
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  border-radius: 6px;
+  color: white;
+  background-color: var(--cor-principal);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+.event-pill:hover {
+  opacity: 0.8;
+}
+
+/* --- 6. PÁGINA DE CHAT (mensagens.php) --- */
+.chat-container {
+  display: flex;
+  flex-grow: 1;
+  height: calc(100vh - 60px);
+}
+.conversations-list {
+  width: 350px;
+  border-right: 1px solid var(--cor-borda-suave);
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+}
+.conversations-list .header {
+  padding: 20px 15px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--cor-principal);
+  border-bottom: 1px solid var(--cor-borda-suave);
+}
+.conversations-list .search-bar {
+  padding: 10px;
+  border-bottom: 1px solid var(--cor-borda-suave);
+}
+.conversations-list .search-bar input {
+  border-radius: 20px;
+  background-color: #f5f5f5;
+  border: none;
+}
+.users-list {
+  overflow-y: auto;
+  flex-grow: 1;
+}
+.user-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border-bottom: 1px solid #f0f0f0;
+}
+.user-item:hover {
+  background-color: var(--cor-fundo-suave);
+}
+.user-item.active {
+  background-color: #ede7f6;
+  border-left: 4px solid var(--cor-principal);
+  padding-left: 11px;
+}
+.user-item img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+.user-info .username {
+  font-weight: 600;
+  color: #333;
+}
+.user-info .last-message {
+  font-size: 0.85rem;
+  color: #777;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+.chat-window {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+.chat-header {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  background-color: var(--cor-fundo-suave);
+  border-bottom: 1px solid var(--cor-borda-suave);
+}
+.chat-header img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+.chat-header .username {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+.chat-messages {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background-color: #e8e2ee;
+}
+.message-bubble {
+  max-width: 65%;
+  padding: 10px 15px;
+  border-radius: 18px;
+  line-height: 1.4;
+  word-wrap: break-word;
+}
+.message-bubble img {
+  max-width: 100%;
+  border-radius: 15px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+.message-bubble audio {
+  width: 250px;
+  margin-top: 5px;
+}
+.message-bubble.sent {
+  background-color: var(--cor-principal);
+  color: white;
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+.message-bubble.received {
+  background-color: #fff;
+  color: #333;
+  align-self: flex-start;
+  border: 1px solid var(--cor-borda-suave);
+  border-bottom-left-radius: 4px;
+}
+/* === CORREÇÃO FORÇADA PARA AS BOLHAS DE MENSAGEM === */
+
+/* Esta regra garante que as bolhas são visíveis, 
+  passando por cima de qualquer outro estilo que as possa estar a esconder.
+*/
+.chat-messages .message-bubble {
+  display: flex !important; /* Garante que é um bloco flexível */
+  visibility: visible !important; /* Garante que está visível */
+  opacity: 1 !important; /* Garante que não está transparente */
+  height: auto !important; /* Garante que tem altura automática */
+  position: static !important; /* Remove qualquer posicionamento estranho */
+}
+.chat-input {
+  padding: 10px 15px;
+  background-color: var(--cor-fundo-suave);
+  border-top: 1px solid var(--cor-borda-suave);
+}
+.chat-input .form-control {
+  border-radius: 20px;
+  border: 1px solid #ccc;
+}
+.chat-input .btn {
+  background: transparent;
+  border: none;
+  color: var(--cor-principal);
+  font-size: 1.2rem;
+}
+.chat-input .btn-primary {
+  background-color: var(--cor-principal);
+  color: white;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+}
+
+/* --- 7. PÁGINA EDITAR PERFIL (editar_perfil.php) --- */
+.profile-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.profile-header .pfp-container {
+  position: relative;
+}
+.profile-header .pfp {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.profile-header .edit-icon {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: var(--cor-principal);
+  color: white;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  border: 2px solid white;
+  cursor: pointer;
+}
+.profile-menu-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--cor-texto);
+  transition: all 0.2s ease;
+}
+.profile-menu-btn:hover {
+  background-color: var(--cor-fundo-suave);
+  border-color: var(--cor-principal);
+}
+.btn-orange {
+  background-color: var(--cor-secundaria);
+  color: white;
+  font-weight: bold;
+  border-radius: 10px;
+  padding: 10px 30px;
+  border: none;
+}
+.btn-orange:hover {
+  background-color: #e68a1a;
+}
+.success-container {
+  text-align: center;
+  margin-top: 5rem;
+}
+.success-icon {
+  font-size: 50px;
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
+  background-color: var(--cor-principal);
+  color: white;
+  border-radius: 50%;
+  display: inline-block;
+  margin-bottom: 1.5rem;
+}
+.success-container h3 {
+  color: var(--cor-principal);
+  font-weight: bold;
+}
+.success-container a {
+  color: #555;
+  font-weight: 500;
+}
+
+/* --- 8. PÁGINA PERFIL PÚBLICO (perfil.php) --- */
+.perfil-wrapper .content {
+  flex: 1;
+  padding: 40px;
+  overflow-y: auto;
+  height: calc(100vh - 60px);
+}
+.perfil-wrapper .agenda {
+  background: var(--cor-fundo-suave);
+  border-left: 1px solid var(--cor-borda-suave);
+  padding: 30px;
+  width: 100%;
+  max-width: 400px;
+}
+.perfil-wrapper .agenda h4 {
+  color: var(--cor-principal);
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.perfil-wrapper .agenda-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 10px 15px;
+  margin-top: 5px;
+  border: 1px solid #eee;
+  color: #555;
+  font-size: 0.9rem;
+}
+.day-btn {
+  cursor: pointer;
+  text-align: center;
+  padding: 6px;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  line-height: 22px;
+  margin: 0 auto;
+  transition: 0.2s;
+}
+.day-btn.event-day {
+  background: #ffe6cc;
+  font-weight: bold;
+}
+.day-btn.selected {
+  background: var(--cor-principal);
+  color: white;
+  font-weight: bold;
+}
+.month-label {
+  font-weight: bold;
+  color: var(--cor-principal);
+  font-size: 1.2rem;
+}
+.perfil-wrapper .agenda table th {
+  color: var(--cor-principal);
+  text-align: center;
+  font-weight: 600;
+}
+.nav-months {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.nav-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--cor-principal);
+}
+.aula-card {
+  background: #fff;
+  display: flex;
+  align-items: center;
+  border-radius: 12px;
+  border: 1px solid var(--cor-borda-suave);
+  padding: 15px;
+  margin-bottom: 15px;
+  transition: all 0.2s ease-in-out;
+}
+.aula-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+}
+.aula-card .data-box {
+  text-align: center;
+  margin-right: 20px;
+  padding-right: 20px;
+  border-right: 1px solid #eee;
+}
+.aula-card .data-box .dia {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--cor-principal);
+}
+.aula-card .data-box .mes {
+  font-size: 0.9rem;
+  color: #777;
+  text-transform: capitalize;
+}
+.aula-card .info .titulo {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #333;
+}
+.aula-card .info .classificar {
+  font-size: 0.8rem;
+  color: var(--cor-principal);
+  text-decoration: none;
+  font-weight: 500;
+}
+.aula-card .info .classificar:hover {
+  text-decoration: underline;
+}
+
+/* --- 9. PÁGINA CRIAR OFICINA --- */
+.criar-oficina-body {
+  background-color: #f9f9f9;
+}
+.criar-oficina-wrapper {
+  display: flex;
+}
+.criar-oficina-sidebar {
+  width: 240px;
+  background-color: #e6d7f3;
+  min-height: 100vh;
+  padding: 30px 20px;
+  color: #4d0f8b;
+  text-align: center;
+}
+.criar-oficina-sidebar h4 {
+  margin-top: 15px;
+  font-size: 18px;
+}
+.criar-oficina-sidebar a {
+  display: block;
+  margin-top: 15px;
+  color: #333;
+  text-decoration: none;
+}
+.criar-oficina-sidebar a.active {
+  color: #800080;
+  font-weight: bold;
+}
+.criar-oficina-content {
+  flex: 1;
+  padding: 40px;
+  background: #fff;
+}
+.criar-oficina-content h2 {
+  margin-bottom: 20px;
+}
+.image-upload {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-top: 12px;
+}
+.image-upload label[for="imagem"] {
+  width: 90px;
+  height: 90px;
+  border-radius: 16px;
+  background: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  color: #8c69cc;
+  border: 2px dashed #cbb6e5;
+  cursor: pointer;
+}
+.image-upload-preview {
+  width: 90px;
+  height: 90px;
+  border-radius: 16px;
+  background: #eee;
+  background-size: cover;
+  background-position: center;
+  border: 1px solid #ccc;
+}
+.popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.popup-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* --- COMPONENTES GENÉRICOS (CARDS DE WORKSHOP, ETC) --- */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin: 20px 0 10px 0;
+  padding: 0 15px;
+}
+.section-header a {
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: #4806a4;
+  padding: 4px 10px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+.card-custom {
+  width: 300px;
+  background: #f29d40;
+  border-radius: 15px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 20px;
+  margin: 0 10px;
+  box-sizing: border-box;
+}
+.card-custom .card-title {
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  margin-top: 20px;
+  text-align: center;
+}
+.card-custom .card-image {
+  width: 280px;
+  height: 200px;
+  background-color: #fff;
+  border-radius: 15px;
+  margin: 20px 0;
+  background-size: cover;
+  background-position: center;
+}
+.card-custom .btn-saber-mais {
+  background-color: #4806a4;
+  border: none;
+  border-radius: 25px;
+  color: white;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  padding: 10px 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  align-self: center;
+  margin-bottom: 10px;
+}
+.card-custom .btn-saber-mais:hover {
+  background-color: #350474;
+}
+
+/* === ESTILOS CORRIGIDOS PARA A HOMEPAGE === */
+
+/* --- 1. HEADER REUTILIZÁVEL --- */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin: 40px 0 15px 0;
+  padding: 0 15px;
+}
+.section-header a {
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: var(--cor-principal);
+  font-weight: 500;
+}
+
+/* --- 2. CARROSSEL DE WORKSHOPS --- */
+.carousel-scroll-wrapper {
+  position: relative;
+  width: 100%;
+  padding: 0 40px; /* Espaço para as setas */
+  box-sizing: border-box;
+}
+.carousel-scroll-container {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto; /* Permite scroll horizontal */
+  scroll-behavior: smooth;
+  padding: 20px 0;
+  scrollbar-width: none; /* Esconde a barra de scroll (Firefox) */
+  -ms-overflow-style: none; /* Esconde a barra de scroll (IE) */
+}
+.carousel-scroll-container::-webkit-scrollbar {
+  display: none; /* Esconde a barra de scroll (Chrome, Safari) */
+}
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.5rem;
+  color: #333;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+#carousel-left {
+  left: 0;
+}
+#carousel-right {
+  right: 0;
+}
+
+/* === NOVO ESTILO PARA OS CARTÕES DE WORKSHOP (FIGMA) === */
+
+.card-custom {
+  flex: 0 0 300px; /* Garante que o cartão mantém a sua largura no carrosel */
+  width: 300px;
+  background: #f29d40; /* A cor laranja principal do seu tema */
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 20px; /* Espaçamento interno geral */
+  margin: 0 10px;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.card-custom:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* O título agora é apenas texto branco */
+.card-custom .card-title {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 1.25rem; /* 20px */
+  text-align: left;
+  width: 100%;
+  margin-bottom: 15px; /* Espaço entre o título e a imagem */
+}
+
+/* A imagem do cartão */
+.card-custom .card-image {
+  width: 100%;
+  height: 180px;
+  background-color: #fff;
+  border-radius: 10px; /* Cantos arredondados na imagem */
+  background-size: cover;
+  background-position: center;
+  margin-bottom: auto; /* Empurra o botão "Saber mais" para o fundo */
+}
+
+/* O botão mantém o roxo para contraste */
+.card-custom .btn-saber-mais {
+  background-color: #5a00a1;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 12px 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  align-self: stretch; /* Ocupa a largura toda */
+  margin-top: 20px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.card-custom .btn-saber-mais:hover {
+  background-color: #4a0080;
+}
+
+/* --- 3. AGENDA DA HOMEPAGE --- */
+.agenda-section {
+  text-align: center;
+  padding: 20px;
+}
+.agenda-section .section-header {
+  display: block;
+}
+.agenda-section .section-header div {
+  font-size: 1.2rem;
+  color: #777;
+}
+.agenda-section .agenda-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--cor-principal);
+}
+.week-nav {
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+.week-nav .month-label {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #000;
+}
+.nav-icon {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--cor-principal);
+}
+.day-selector {
+  gap: 15px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding-bottom: 15px;
+  justify-content: start;
+}
+.day-item {
+  flex: 0 0 80px; /* Define largura fixa e impede que encolha */
+  height: 90px;
+  background-color: #f4f0f7;
+  border: 2px solid transparent;
+  border-radius: 15px;
+  font-weight: 600;
+  color: var(--cor-principal);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.day-item .day-number {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+.day-item .day-name {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.day-item:hover {
+  border-color: #d1c4e9;
+}
+.day-item.selected {
+  background-color: var(--cor-secundaria);
+  color: white;
+  border-color: var(--cor-secundaria);
+}
+.agenda-hoje {
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.3rem;
+  margin-top: 30px;
+}
+.agenda-lista {
+  gap: 15px;
+  max-width: 600px;
+  margin: 15px auto;
+}
+.agenda-card {
+  background-color: #fff1e1;
+  border: 1px solid #ffe2c0;
+  padding: 15px 20px;
+  font-weight: 500;
+  border-radius: 12px;
+}
+
+/* === ESTILOS CORRIGIDOS PARA A AGENDA DA HOMEPAGE === */
+
+#homepage-agenda .agenda-section {
+  padding: 20px 0; /* Menos padding vertical */
+}
+
+/* Título da secção */
+#homepage-agenda .section-header {
+  text-align: center;
+  display: block;
+  padding: 0;
+  margin-bottom: 25px;
+}
+
+#homepage-agenda .section-header div {
+  font-size: 1rem;
+  color: #888;
+  margin: 0;
+  font-weight: 500;
+}
+
+#homepage-agenda .section-header .agenda-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--cor-principal);
+}
+
+/* Navegação da semana */
+#homepage-agenda .week-nav {
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+#homepage-agenda .month-label {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #000;
+  text-align: center;
+}
+
+#homepage-agenda .nav-icon {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--cor-principal);
+}
+
+#homepage-agenda #btn-today {
+  display: none; /* O botão "Hoje" não aparece neste design */
+}
+
+/* A grelha dos dias */
+#homepage-agenda .day-selector {
+  display: flex;
+  justify-content: center; /* Centraliza os dias */
+  gap: 15px;
+  flex-wrap: nowrap; /* Impede que os dias quebrem linha */
+  padding-bottom: 15px;
+}
+
+/* O estilo de cada dia */
+#homepage-agenda .day-item {
+  flex: 0 0 75px; /* Define largura fixa e impede que encolha */
+  height: 85px;
+  background-color: #f4f0f7;
+  border: 2px solid transparent;
+  border-radius: 20px; /* Mais arredondado */
+  font-weight: 600;
+  color: var(--cor-principal);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+#homepage-agenda .day-item .day-number {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+#homepage-agenda .day-item .day-name {
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+#homepage-agenda .day-item:hover {
+  border-color: #d1c4e9;
+  transform: translateY(-3px);
+}
+
+#homepage-agenda .day-item.selected {
+  background-color: var(--cor-secundaria);
+  color: white;
+  border-color: var(--cor-secundaria);
+  transform: scale(1.05);
+}
+
+/* Lista de eventos abaixo */
+#homepage-agenda .agenda-hoje {
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.3rem;
+  margin-top: 30px;
+}
+
+#homepage-agenda .agenda-lista {
+  gap: 12px;
+  max-width: 500px;
+  margin: 15px auto;
+}
+
+#homepage-agenda .agenda-card {
+  background-color: #fff1e1;
+  border: 1px solid transparent;
+  padding: 18px 25px;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 15px;
+  text-align: center;
+}
+
+/* Estilo para o indicador "Visto" no chat */
+.seen-indicator {
+  align-self: flex-end; /* Alinha à direita, como as mensagens enviadas */
+  font-size: 0.75rem;
+  color: #666;
+  padding-right: 15px;
+  margin-top: -5px; /* Puxa para cima para ficar mais perto da última bolha */
+}
+
+/* === ESTILOS PARA O LEITOR DE ÁUDIO TIPO INSTAGRAM === */
+
+.audio-player-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 250px; /* Largura do leitor de áudio */
+}
+
+.play-pause-btn {
+  background-color: var(--cor-principal);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1rem;
+  cursor: pointer;
+  flex-shrink: 0; /* Impede que o botão encolha */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* Estilo diferente para o leitor recebido */
+.message-bubble.received .play-pause-btn {
+  background-color: #f7941d; /* Laranja para contraste */
+}
+
+.waveform-container {
+  flex-grow: 1;
+  height: 40px;
+}
+
+/* A biblioteca wavesurfer.js cria um elemento <wave> dentro do container */
+.waveform-container wave {
+  height: 40px !important; /* Força a altura das ondas */
+}
+
+/* Estilo para o indicador de estado Online/Offline */
+.status-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+  background-color: #ccc; /* Cinzento para offline por defeito */
+  border: 2px solid white;
+  position: absolute;
+  bottom: 2px;
+  right: 12px;
+}
+
+.status-indicator.online {
+  background-color: #28a745; /* Verde para online */
+}
+
+/* --- ESTILO PARA O ESTADO ONLINE/OFFLINE NO CABEÇALHO DO CHAT --- */
+
+/* Contentor para o nome e o estado, para os alinhar verticalmente */
+.chat-header .header-user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.2; /* Aproxima as duas linhas de texto */
+}
+
+/* O texto 'Online' ou 'Offline' */
+.chat-header .header-status {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #888; /* Cinzento por defeito (Offline) */
+}
+
+/* Quando o utilizador está online, o texto fica verde */
+.chat-header .header-status.online {
+  color: #28a745;
+}
+
+/* --- ESTILO PARA A BOLHA DE MENSAGEM "A ESCREVER..." --- */
+
+.typing-indicator-bubble {
+  display: flex; /* Alinha os pontos lado a lado */
+  align-items: center;
+  padding: 15px; /* Padding igual ao de uma bolha normal */
+}
+
+/* Cada um dos três pontos da animação */
+.typing-indicator-bubble .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #8e8e93; /* Cor cinzenta dos pontos */
+  margin: 0 2px;
+
+  /* A animação que faz os pontos "saltar" */
+  animation: typing-bounce 1.4s infinite ease-in-out both;
+}
+
+/* Adiciona um pequeno delay a cada ponto para criar o efeito sequencial */
+.typing-indicator-bubble .dot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.typing-indicator-bubble .dot:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+/* A animação em si (cresce e encolhe) */
+@keyframes typing-bounce {
+  0%,
+  80%,
+  100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
