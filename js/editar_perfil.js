@@ -1,59 +1,86 @@
 document.addEventListener("DOMContentLoaded", () => {
   const contentContainer = document.getElementById("dynamic-content");
-  if (!contentContainer) return; // Sai se não estiver na página de edição de perfil
+  if (!contentContainer) return;
 
   // Função para carregar o HTML dos formulários
   function loadContent(formFileName) {
-    fetch(`components/${formFileName}`)
+    const fullUrl = `components/${formFileName}`;
+
+    fetch(fullUrl)
       .then((response) => {
-        if (!response.ok)
-          throw new Error(`Formulário não encontrado: ${formFileName}`);
+        if (!response.ok) {
+          throw new Error(`Formulário não encontrado: ${fullUrl}`);
+        }
         return response.text();
       })
       .then((html) => {
         contentContainer.innerHTML = html;
-        // Depois de carregar o formulário, adiciona os listeners a ele
-        attachFormSubmitListener();
+        attachFormListeners();
       })
       .catch((error) => {
         console.error("Erro ao carregar formulário:", error);
-        contentContainer.innerHTML = `<div class="alert alert-danger">Ocorreu um erro ao carregar esta secção.</div>`;
+        contentContainer.innerHTML = `<div class="alert alert-danger">Ocorreu um erro ao carregar esta secção. Verifique a consola (F12).</div>`;
       });
   }
 
+  // Listener de cliques para os botões do menu
+  contentContainer.addEventListener("click", (e) => {
+    const targetButton = e.target.closest(".profile-menu-btn");
+    if (targetButton && targetButton.dataset.form) {
+      loadContent(targetButton.dataset.form);
+    }
+  });
+
   // Função que é chamada DEPOIS de um formulário ser carregado na página
-  function attachFormSubmitListener() {
+  function attachFormListeners() {
     const form = contentContainer.querySelector("form");
     if (form) {
-      // Interceta a submissão do formulário para a fazer com AJAX
       form.addEventListener("submit", function (e) {
-        e.preventDefault(); // Impede o recarregamento da página
+        e.preventDefault();
         const formData = new FormData(this);
-        const actionUrl = this.action; // A action vem do HTML do formulário
+        const actionUrl = this.action;
 
         fetch(actionUrl, { method: "POST", body: formData })
-          .then((response) => response.json())
+          .then((response) => {
+            // Se a resposta não for OK (ex: erro 404 ou 500), lança um erro
+            if (!response.ok) {
+              throw new Error(
+                `Erro de rede ou do servidor: ${response.status}`
+              );
+            }
+            return response.json();
+          })
           .then((data) => {
             if (data.status === "success") {
-              // Mostra a mensagem de sucesso
               contentContainer.innerHTML = `
                                 <div class="success-container">
                                     <div class="success-icon">✓</div>
                                     <h3>${data.message}</h3>
                                     <p><a href="perfil.php">Voltar ao Perfil</a></p>
                                 </div>`;
+              // Opcional: Forçar recarregamento da página para ver a pfp atualizada na nav
+              setTimeout(() => window.location.reload(), 2000);
             } else {
-              // Mostra a mensagem de erro
               const errorDiv = form.querySelector(".error-message");
               if (errorDiv) {
                 errorDiv.textContent = data.message;
                 errorDiv.style.display = "block";
               }
             }
+          })
+          .catch((error) => {
+            // NOVO: Bloco .catch() para apanhar erros de rede ou JSON inválido
+            console.error("Erro na submissão do formulário:", error);
+            const errorDiv = form.querySelector(".error-message");
+            if (errorDiv) {
+              errorDiv.textContent =
+                "Ocorreu um erro de comunicação. Tente novamente.";
+              errorDiv.style.display = "block";
+            }
           });
       });
 
-      // Lógica para a pré-visualização da imagem de perfil
+      // Lógica para a pré-visualização da imagem de perfil (sem alterações)
       const pfpInput = form.querySelector("#pfp-input");
       const pfpPreview = form.querySelector("#pfp-preview");
       if (pfpInput && pfpPreview) {
@@ -61,7 +88,6 @@ document.addEventListener("DOMContentLoaded", () => {
           e.preventDefault();
           pfpInput.click();
         });
-
         pfpInput.addEventListener("change", (e) => {
           const file = e.target.files[0];
           if (file) {
@@ -76,15 +102,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Adiciona o listener de clique aos botões do menu inicial
-  contentContainer.addEventListener("click", (e) => {
-    const targetButton = e.target.closest(".profile-menu-btn");
-    if (targetButton && targetButton.dataset.form) {
-      loadContent(targetButton.dataset.form);
-    }
-  });
-
-  // Adiciona um listener ao ícone de lápis na foto de perfil
   const pfpEditIcon = document.getElementById("pfp-edit-icon-trigger");
   if (pfpEditIcon) {
     pfpEditIcon.addEventListener("click", () => {

@@ -1390,3 +1390,19 @@ textarea.form-control {
     transform: scale(1);
   }
 }
+
+/* --- ESTILO PARA A PRÉ-VISUALIZAÇÃO DA FOTO DE PERFIL NA PÁGINA DE EDIÇÃO --- */
+
+#pfp-preview {
+  width: 150px; /* Largura da imagem */
+  height: 150px; /* Altura da imagem */
+  object-fit: cover; /* Garante que a imagem preenche o círculo sem distorcer */
+  border: 3px solid var(--cor-borda-suave);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+#pfp-preview:hover {
+  border-color: var(--cor-principal);
+  opacity: 0.8; /* Efeito subtil ao passar o rato por cima */
+}

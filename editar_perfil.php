@@ -47,8 +47,9 @@ mysqli_close($conn);
                             <p class="text-muted mb-0"><?= htmlspecialchars($user_type) ?></p>
                         </div>
                     </div>
-                    <button class="profile-menu-btn" data-form="components\form_edit_data.php">Editar Dados</button>
-                    <button class=" profile-menu-btn" data-form="components\form_edit_password.php">Alterar Palavra-passe</button>
+                    <button class="profile-menu-btn" data-form="../components/form_edit_data.php">Editar Dados</button>
+                    <button class="profile-menu-btn" data-form="../components/form_edit_password.php">Alterar Palavra-passe</button>
+
                 </div>
             </div>
         </div>

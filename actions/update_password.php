@@ -4,8 +4,7 @@ require_once("../connections/connection.php");
 header('Content-Type: application/json');
 
 if (!isset($_SESSION['user_id']) || $_SERVER['REQUEST_METHOD'] !== 'POST') {
-    echo json_encode(['status' => 'error', 'message' => 'Acesso negado.']);
-    exit;
+    exit(json_encode(['status' => 'error', 'message' => 'Acesso negado.']));
 }
 
 $user_id = $_SESSION['user_id'];
@@ -13,17 +12,8 @@ $current_password = $_POST['current_password'];
 $new_password = $_POST['new_password'];
 $confirm_password = $_POST['confirm_password'];
 
-if (empty($current_password) || empty($new_password) || empty($confirm_password)) {
-    echo json_encode(['status' => 'error', 'message' => 'Todos os campos são obrigatórios.']);
-    exit;
-}
-if (strlen($new_password) < 8) {
-    echo json_encode(['status' => 'error', 'message' => 'A nova password deve ter pelo menos 8 caracteres.']);
-    exit;
-}
-if ($new_password !== $confirm_password) {
-    echo json_encode(['status' => 'error', 'message' => 'As novas palavras-passe não coincidem.']);
-    exit;
+if (empty($current_password) || empty($new_password) || empty($confirm_password) || strlen($new_password) < 8 || $new_password !== $confirm_password) {
+    exit(json_encode(['status' => 'error', 'message' => 'Por favor, verifique os dados inseridos.']));
 }
 
 $conn = new_db_connection();
