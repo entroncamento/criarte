@@ -5,7 +5,7 @@ $query_interesses = "SELECT id, nome FROM interesses";
 $result_interesses = mysqli_query($conn, $query_interesses);
 ?>
 
-<form action="scripts/sc_register.php" method="POST">
+<form action="actions/register_action.php" method="POST">
     <input type="hidden" name="tipo" value="Aprendiz">
 
     <div class="form-row mb-2">

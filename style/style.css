@@ -855,6 +855,46 @@ textarea.form-control {
   text-align: center;
 }
 
+/* === ESTILOS PARA O CONSTRUTOR DE LISTA DE MATERIAIS === */
+
+.materiais-builder {
+  border: 1px solid var(--cor-borda-suave);
+  background-color: var(--cor-fundo-suave);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.materiais-section {
+  background-color: var(--cor-branco);
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #e0e0e0;
+}
+
+.materiais-section input.section-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-bottom: 2px solid var(--cor-fundo-sidebar);
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 5px 0;
+}
+.materiais-section input.section-title:focus {
+  outline: none;
+  border-bottom-color: var(--cor-principal);
+}
+
+.materiais-items-list .input-group {
+  margin-bottom: 8px;
+}
+
+.btn-add-item,
+.btn-add-section {
+  font-weight: 600;
+}
+
 /* --- COMPONENTES GENÉRICOS (CARDS DE WORKSHOP, ETC) --- */
 .section-header {
   display: flex;
@@ -880,6 +920,7 @@ textarea.form-control {
   border-radius: 15px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   color: white;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -894,6 +935,13 @@ textarea.form-control {
   margin-top: 20px;
   text-align: center;
 }
+
+.card-custom,
+.card-image,
+.card-title-bar {
+  box-sizing: border-box;
+}
+
 .card-custom .card-image {
   width: 280px;
   height: 200px;
@@ -1405,4 +1453,231 @@ textarea.form-control {
 #pfp-preview:hover {
   border-color: var(--cor-principal);
   opacity: 0.8; /* Efeito subtil ao passar o rato por cima */
+}
+
+/* === ESTILOS PARA O PAINEL DO ARTESÃO (FIGMA DESIGN) === */
+
+.artesao-dashboard-card {
+  background-color: var(--cor-branco);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border: 1px solid var(--cor-borda-suave);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.artesao-dashboard-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.workshop-icon-container {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  background-color: var(--cor-fundo-sidebar);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.workshop-icon-container i {
+  font-size: 1.8rem; /* 28px */
+  color: var(--cor-principal);
+}
+
+.workshop-progress-info {
+  flex-grow: 1;
+}
+
+.workshop-progress-info h5 {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.progress-bar-custom {
+  background-color: #e9ecef;
+  border-radius: 20px;
+  height: 12px;
+  overflow: hidden;
+}
+
+.progress-bar-custom .progress {
+  height: 100%;
+  border-radius: 20px;
+  background: linear-gradient(90deg, #8e44ad, #5a00a1); /* Gradiente roxo */
+  transition: width 0.5s ease-in-out;
+}
+
+.workshop-occupancy {
+  min-width: 50px;
+  text-align: right;
+}
+
+.workshop-occupancy .percentage {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.workshop-occupancy .numbers {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+/* === ESTILOS MELHORADOS PARA A PÁGINA DE GESTÃO DE OFICINAS === */
+
+.gestao-header h2 {
+  color: var(--cor-texto);
+  font-weight: 700;
+}
+
+.gestao-header .btn-primary {
+  background-color: var(--cor-principal);
+  border-color: var(--cor-principal);
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+}
+
+/* O cartão principal para cada workshop na lista */
+.artesao-workshop-card {
+  background-color: var(--cor-branco);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border: 1px solid var(--cor-borda-suave);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.artesao-workshop-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* Contentor do ícone à esquerda */
+.workshop-icon-container {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  background-color: var(--cor-fundo-sidebar);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.workshop-icon-container i {
+  font-size: 1.8rem;
+  color: var(--cor-principal);
+}
+
+/* Informação do workshop (título e barra) */
+.workshop-progress-info {
+  flex-grow: 1;
+}
+
+.workshop-progress-info h5 {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.progress-bar-custom {
+  background-color: #e9ecef;
+  border-radius: 20px;
+  height: 12px;
+  overflow: hidden;
+}
+
+.progress-bar-custom .progress {
+  height: 100%;
+  border-radius: 20px;
+  background: linear-gradient(90deg, #8e44ad, var(--cor-principal));
+}
+
+/* Ocupação (percentagem e números) */
+.workshop-occupancy {
+  min-width: 60px;
+  text-align: right;
+}
+
+.workshop-occupancy .percentage {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.workshop-occupancy .numbers {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+/* Contentor para os botões de editar/remover */
+.workshop-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-left: 15px;
+  border-left: 1px solid var(--cor-borda-suave);
+  padding-left: 25px;
+}
+
+.workshop-actions .btn-action {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--cor-borda-suave);
+  background-color: var(--cor-branco);
+  color: #6c757d;
+  transition: all 0.2s ease;
+}
+
+.workshop-actions .btn-action:hover {
+  background-color: var(--cor-principal);
+  color: white;
+  border-color: var(--cor-principal);
+}
+
+.workshop-actions .btn-delete:hover {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+/* Estilo corrigido para os cards de workshops */
+.card-custom {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  border-radius: 15px;
+  overflow: hidden;
+  background-color: #f7931e;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card-image {
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  padding-top: 66.66%; /* Proporção 3:2 (largura:altura) */
+}
+
+.card-title-bar {
+  text-align: center;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 12px;
+  color: white;
 }

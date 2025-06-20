@@ -30,22 +30,26 @@ if (!DateTime::createFromFormat('Y-m-d', $date)) {
 }
 
 // Query para buscar os workshops do utilizador para uma data específica
-$sql = "SELECT w.title 
-        FROM workshops w
-        INNER JOIN user_workshops uw ON w.id = uw.workshop_id
-        WHERE uw.user_id = ? AND DATE(w.event_date) = ?";
+$sql = "SELECT a.titulo AS title
+        FROM aulas a
+        INNER JOIN user_workshops uw ON a.workshop_id = uw.workshop_id
+        WHERE uw.user_id = ? AND DATE(a.data) = ?";
+
+
 
 $stmt = mysqli_prepare($conn, $sql);
 mysqli_stmt_bind_param($stmt, "is", $user_id, $date);
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 
-$workshops = [];
+$aulas = [];
 while ($row = mysqli_fetch_assoc($result)) {
-    $workshops[] = $row;
+    $aulas[] = $row; // já tem 'title'
 }
+
+
 
 mysqli_stmt_close($stmt);
 mysqli_close($conn);
 
-echo json_encode($workshops);
+echo json_encode($aulas);

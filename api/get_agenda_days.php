@@ -65,15 +65,21 @@ if ($context === 'public') {
     $sql = "SELECT event_date, title FROM workshops WHERE estado = 'aceite' AND event_date BETWEEN ? AND ?";
     $stmt = mysqli_prepare($conn, $sql);
     mysqli_stmt_bind_param($stmt, "ss", $startDateFormatted, $endDateFormatted);
-} elseif (isset($_SESSION['user_id'])) {
+} elseif ($context === 'user' && isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
-    $sql = "SELECT w.event_date, w.title FROM workshops w JOIN user_workshops uw ON w.id = uw.workshop_id WHERE uw.user_id = ? AND w.event_date BETWEEN ? AND ?";
+    $sql = "SELECT a.data AS event_date, a.titulo AS title 
+            FROM aulas a
+            JOIN user_workshops uw ON a.workshop_id = uw.workshop_id
+            WHERE uw.user_id = ? AND a.data BETWEEN ? AND ?";
     $stmt = mysqli_prepare($conn, $sql);
     mysqli_stmt_bind_param($stmt, "iss", $user_id, $startDateFormatted, $endDateFormatted);
+} else {
+    http_response_code(400);
+    echo json_encode(['error' => 'Contexto inválido ou utilizador não autenticado.']);
+    exit;
 }
 
-if (isset($stmt)) {
-    mysqli_stmt_execute($stmt);
+if ($stmt && mysqli_stmt_execute($stmt)) {
     $result = mysqli_stmt_get_result($stmt);
     if ($result) {
         while ($row = mysqli_fetch_assoc($result)) {
@@ -83,6 +89,10 @@ if (isset($stmt)) {
         }
     }
     mysqli_stmt_close($stmt);
+} else {
+    http_response_code(500);
+    echo json_encode(['error' => 'Erro na base de dados.']);
+    exit;
 }
 
 echo json_encode(['days' => $days, 'events' => $events, 'currentMonth' => $dateRangeTitle]);

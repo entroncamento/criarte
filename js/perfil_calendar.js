@@ -1,9 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // CORREÇÃO: O seletor agora procura por '.page-wrapper .agenda', que é o contentor correto no seu perfil.php limpo
+  // Procura o contentor da agenda. Se não o encontrar, o script não executa.
   const calendarContainer = document.querySelector(".page-wrapper .agenda");
-  if (!calendarContainer) {
-    return; // Se não estivermos numa página com esta agenda, o script para.
-  }
+  if (!calendarContainer) return;
 
   let currentMonthOffset = 0;
   let selectedDate = new Date().toISOString().split("T")[0];
@@ -11,56 +9,40 @@ document.addEventListener("DOMContentLoaded", () => {
   const eventList = document.getElementById("event-list");
   const monthLabel = document.getElementById("month-label");
 
-  // Função para renderizar o calendário com os dados recebidos
   function renderCalendar(data) {
-    // Define o título do mês/ano
     const refDate = new Date(data.days[15].date + "T00:00:00");
     const month = refDate.toLocaleString("pt-PT", { month: "long" });
     const year = refDate.getFullYear();
     monthLabel.textContent = `${
       month.charAt(0).toUpperCase() + month.slice(1)
     } ${year}`;
+    calendarBody.innerHTML = "";
 
-    let tableHtml = ""; // Constrói o HTML numa string para ser mais eficiente
-    let week = [];
-
-    // Adiciona células vazias para os dias antes do início do mês
+    let weekHtml = "<tr>";
     const firstDayOfWeek = new Date(data.days[0].date + "T00:00:00").getDay();
     for (let i = 0; i < firstDayOfWeek; i++) {
-      week.push("<td></td>");
+      weekHtml += "<td></td>";
     }
 
-    // Preenche os dias do calendário
-    data.days.forEach((day) => {
+    data.days.forEach((day, index) => {
       const isSelected = day.date === selectedDate ? "selected" : "";
       const hasEvent = data.events && data.events[day.date] ? "event-day" : "";
-      const dayHtml = `
-                <td>
-                    <div class="day-btn ${isSelected} ${hasEvent}" data-date="${day.date}">
-                        ${day.day}
-                    </div>
-                </td>`;
-      week.push(dayHtml);
+      weekHtml += `<td><div class="day-btn ${isSelected} ${hasEvent}" data-date="${day.date}">${day.day}</div></td>`;
 
-      // Quando a semana está completa (7 dias), cria a linha da tabela
-      if (week.length === 7) {
-        tableHtml += `<tr>${week.join("")}</tr>`;
-        week = []; // Esvazia a semana para a próxima linha
+      if ((index + firstDayOfWeek + 1) % 7 === 0) {
+        weekHtml += "</tr><tr>";
       }
     });
+    weekHtml += "</tr>";
+    calendarBody.innerHTML = weekHtml;
 
-    // "Desenha" o calendário na página de uma só vez
-    calendarBody.innerHTML = tableHtml;
-    // Adiciona os eventos de clique aos novos botões
     attachDayClickListeners(data.events);
-    // Mostra os eventos para o dia já selecionado
     showEvents(
       selectedDate,
       data.events && data.events[selectedDate] ? data.events[selectedDate] : []
     );
   }
 
-  // Adiciona a funcionalidade de clique a cada dia do calendário
   function attachDayClickListeners(events) {
     document.querySelectorAll(".day-btn").forEach((btn) => {
       btn.onclick = () => {
@@ -77,21 +59,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Busca os dados do calendário à API
   function fetchCalendar() {
     const target = new Date();
     target.setDate(1);
     target.setMonth(target.getMonth() + currentMonthOffset);
     const formatted = target.toISOString().split("T")[0];
 
-    // A API agora usa o contexto 'user' por defeito, que é o correto para o perfil
-    fetch(`api/get_agenda_days.php?start=${formatted}&view=month`)
+    fetch(`api/get_agenda_days.php?start=${formatted}&view=month&context=user`)
       .then((res) => res.json())
-      .then((data) => renderCalendar(data))
-      .catch((error) => console.error("Erro ao carregar o calendário:", error));
+      .then((data) => renderCalendar(data));
   }
 
-  // Mostra os eventos para o dia selecionado
   function showEvents(date, eventos) {
     eventList.innerHTML = "";
     if (!eventos || eventos.length === 0) {
@@ -104,7 +82,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Configuração inicial e botões de navegação
   fetchCalendar();
   document.getElementById("prev-month").onclick = () => {
     currentMonthOffset--;

@@ -1,4 +1,4 @@
-<form action="scripts/sc_register.php" method="POST">
+<form action="actions/register_action.php" method="POST">
     <input type="hidden" name="tipo" value="Artesão">
 
     <div class="mb-3">
